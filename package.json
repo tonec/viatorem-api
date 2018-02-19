@@ -1,0 +1,24 @@
+{
+  "name": "viatorem-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "APIPORT=3030 babel-node index.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "is-master": "^1.2.2",
+    "jsonwebtoken": "^8.1.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.0.6",
+    "restify": "^6.3.4",
+    "restify-cookies": "^0.2.2"
+  }
+}
