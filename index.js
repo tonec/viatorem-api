@@ -2,10 +2,10 @@ import restify from 'restify'
 import mongoose from 'mongoose'
 import im from 'is-master'
 import cookieParser from 'restify-cookies'
-import jwt from 'jsonwebtoken'
 import config from './config'
 import routes from './routes'
 import tasks from './tasks'
+import verifyToken from './utils/verifyToken'
 
 process.on('unhandledRejection', error => console.error('unhandledRejection error: ', error))
 
@@ -33,13 +33,12 @@ app.use((req, res, next) => {
   const cookie = viatorem ? JSON.parse(viatorem) : null
 
   if (cookie && cookie.accessToken) {
-    jwt.verify(cookie.accessToken, 'some secret', (error, decode) => {
-      if (error) {
-        req.user = null
-      }
-      req.user = decode
-      next()
-    })
+    const verified = verifyToken(cookie.accessToken)
+    if (!verified) {
+      req.user = null
+    }
+    req.user = verified
+    next()
   } else {
     req.user = null
     next()

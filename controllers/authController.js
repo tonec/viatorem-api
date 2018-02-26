@@ -59,9 +59,6 @@ export default {
         }
 
         res.json({
-          user: {
-            name: user.name
-          },
           accessToken: jwt.sign(
             {
               name: user.name,
