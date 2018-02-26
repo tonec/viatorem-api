@@ -2,6 +2,7 @@ import errors from 'restify-errors'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt-nodejs'
 import User from '../models/userModel'
+import verifyToken from '../utils/verifyToken'
 
 export default {
   register: (req, res) => {
@@ -71,6 +72,21 @@ export default {
         })
       })
       .catch(next)
+  },
+
+  verify: (req, res, next) => {
+    const { viatorem } = req.cookies
+    const cookie = viatorem ? JSON.parse(viatorem) : null
+
+    if (cookie && cookie.accessToken) {
+      const verified = verifyToken(cookie.accessToken)
+      if (verified) {
+        res.send(verified)
+        return
+      }
+    }
+
+    res.send(null)
   },
 
   loginRequired: (req, res, next) => {

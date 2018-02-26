@@ -1,5 +1,4 @@
 import User from '../models/userModel'
-import verifyToken from '../utils/verifyToken'
 
 export default {
   index: (req, res, next) => {
@@ -18,20 +17,5 @@ export default {
         res.json(user)
       })
       .catch(next)
-  },
-
-  current: (req, res, next) => {
-    const { viatorem } = req.cookies
-    const cookie = viatorem ? JSON.parse(viatorem) : null
-
-    if (cookie && cookie.accessToken) {
-      const verified = verifyToken(cookie.accessToken)
-      if (verified) {
-        res.send(verified)
-        return
-      }
-    }
-
-    res.send(null)
   }
 }
