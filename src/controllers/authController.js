@@ -60,15 +60,14 @@ export default {
         }
 
         res.json({
-          accessToken: jwt.sign(
-            {
-              name: user.name,
-              email: user.email,
-              _id: user._id
-            },
-            'some secret'
-          ),
-          expires: 1
+          user: {
+            id: user._id,
+            name: user.name
+          },
+          auth: {
+            accessToken: jwt.sign({ name: user.name, email: user.email, id: user._id }, 'some secret'),
+            expires: 1
+          }
         })
       })
       .catch(next)

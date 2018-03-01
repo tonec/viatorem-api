@@ -1,4 +1,4 @@
-import config from '../config'
+import config from '../../config'
 import authController from '../controllers/authController'
 import tripController from '../controllers/tripController'
 

@@ -1,8 +1,8 @@
 import request from 'supertest'
 import { expect } from 'chai'
 import mongoose from 'mongoose'
-import config from '../../config'
-import api from '../../api'
+import config from '../../../config'
+import api from '../../'
 import cookie from '../test-cookie'
 
 const Trip = mongoose.model('Trip')

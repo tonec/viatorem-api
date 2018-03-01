@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import request from 'supertest'
-import config from '../config'
+import config from '../../config'
 
 const path = config.basePath
 

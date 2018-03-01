@@ -1,8 +1,8 @@
 import request from 'supertest'
 import { expect } from 'chai'
 import mongoose from 'mongoose'
-import config from '../../config'
-import api from '../../api'
+import config from '../../../config'
+import api from '../../'
 
 const User = mongoose.model('User')
 const path = config.basePath

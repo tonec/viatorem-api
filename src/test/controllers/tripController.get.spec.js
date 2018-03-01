@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { expect } from 'chai'
-import config from '../../config'
-import api from '../../api'
+import config from '../../../config'
+import api from '../../'
 import { registerAndLoginUser, createTrip } from '../test-helpers'
 
 const path = config.basePath
