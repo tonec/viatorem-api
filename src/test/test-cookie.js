@@ -1,7 +1,4 @@
 export default {
-  user: {
-    name: 'Joe Bloggs'
-  },
-  accessToken:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9lIEJsb2dncyIsImVtYWlsIjoiam9lLWJsb2dnc0BleGFtcGxlLmNvbSIsIl9pZCI6IjVhNTMyMTM3OTdiNGJlODJkMGVmZjU4NSIsImlhdCI6MTUxNTM5NzQ0Nn0.fnTQmb90Wcf6R9jFZ_ZDpzm2Wp5Af6tsyvToloWOKzA'
+  accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdCBVc2VyIiwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiaWQiOiI1YTVlZDkwMGM0NzhkNTA2NjJmZGU1NGUiLCJpYXQiOjE1MTk5NDQ3MjV9.UkuBth2Mb_BRfkiBbeOUz-hDeFXHt5982pRC-NTgX0s',
+  expires: 1
 }

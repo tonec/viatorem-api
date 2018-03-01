@@ -152,7 +152,7 @@ describe('ROUTE: /auth/login', () => {
         }
         expect(res.status).to.equal(200)
         expect(res.body.user.name).to.equal(userOneProps.name)
-        expect(res.body.accessToken).to.not.be.undefined
+        expect(res.body.auth.accessToken).to.not.be.undefined
         done()
       })
   })
