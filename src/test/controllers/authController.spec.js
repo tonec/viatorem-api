@@ -97,7 +97,7 @@ describe('ROUTE: /auth/register', () => {
 
           expect(res.body.name).to.equal(userOneProps.name)
           expect(res.body.email).to.equal(userOneProps.email)
-          expect(res.body.password).to.be.undefined
+          expect(res.body.password).to.equal(undefined)
           done()
         })
     })
@@ -152,7 +152,7 @@ describe('ROUTE: /auth/login', () => {
         }
         expect(res.status).to.equal(200)
         expect(res.body.user.name).to.equal(userOneProps.name)
-        expect(res.body.auth.accessToken).to.not.be.undefined
+        expect(res.body.auth.accessToken).to.not.equal(undefined)
         done()
       })
   })

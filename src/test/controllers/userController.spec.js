@@ -88,7 +88,7 @@ describe('ROUTE: /users', () => {
         }
         expect(res.body.name).to.equal(userOne.name)
         expect(res.body.email).to.equal(userOne.email)
-        expect(res.body.password).to.be.undefined
+        expect(res.body.password).to.equal(undefined)
         done()
       })
   })
