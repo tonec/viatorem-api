@@ -46,8 +46,8 @@ describe('ROUTE: GET /trips', () => {
         auth = userRegResults
 
         // User One Trips
-        tripOne = createTrip(api)(auth[0].login, tripOneProps)
-        tripTwo = createTrip(api)(auth[0].login, tripTwoProps)
+        tripOne = createTrip(api)(auth[0].login.auth, tripOneProps)
+        tripTwo = createTrip(api)(auth[0].login.auth, tripTwoProps)
 
         return Promise.all([tripOne, tripTwo])
           .then(() => {
@@ -83,7 +83,7 @@ describe('ROUTE: GET /trips', () => {
   it('A GET to /trips should return a list of all trips for the specific user', done => {
     request(api)
       .get(path('/trips'))
-      .set('Cookie', `viatorem=${JSON.stringify(auth[0].login)}`)
+      .set('Cookie', `viatorem=${JSON.stringify(auth[0].login.auth)}`)
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -102,7 +102,7 @@ describe('ROUTE: GET /trips', () => {
 
         request(api)
           .get(path(`/trips/${tripOneId}`))
-          .set('Cookie', `viatorem=${JSON.stringify(auth[1].login)}`)
+          .set('Cookie', `viatorem=${JSON.stringify(auth[1].login.auth)}`)
           .expect('Content-Type', /json/)
           .expect(401)
           .end(err => {
@@ -123,7 +123,7 @@ describe('ROUTE: GET /trips', () => {
 
       request(api)
         .get(path(`/trips/${tripOneId}`))
-        .set('Cookie', `viatorem=${JSON.stringify(auth[0].login)}`)
+        .set('Cookie', `viatorem=${JSON.stringify(auth[0].login.auth)}`)
         .expect('Content-Type', /json/)
         .expect(200)
         .end(err => {
