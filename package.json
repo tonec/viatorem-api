@@ -7,7 +7,8 @@
     "start": "APIPORT=3030 nodemon ./src/index.js --exec babel-node",
     "precommit": "lint-staged",
     "lint": "eslint -c .eslintrc src",
-    "test": "NODE_ENV=test APIPORT=3333 node --expose-internals ./node_modules/.bin/mocha --require babel-core/register --recursive ./src/**/*.spec.js --exit"
+    "test": "NODE_ENV=test APIPORT=3333 node --expose-internals ./node_modules/.bin/mocha --require babel-core/register --recursive ./src/**/*.spec.js --exit",
+    "test:watch": "nodemon -w . -d 0 --exec npm test"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
