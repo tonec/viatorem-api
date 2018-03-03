@@ -15,10 +15,9 @@ export default {
     }
 
     if (!body.name || !body.email || !body.password) {
-      res.send(
+      return res.send(
         new errors.BadRequestError('Incomplete registration information.')
       )
-      return
     }
 
     User.create(userProps)
@@ -40,36 +39,34 @@ export default {
   },
 
   login: (req, res, next) => {
-    User.findOne({ email: req.body.email })
-      .then(user => {
-        if (!user) {
-          res.send(
-            new errors.UnauthorizedError({
-              message: 'Authentication failed. User not found.'
-            })
-          )
-        }
+    User.findOne({ email: req.body.email }).then(user => {
+      if (!user) {
+        return res.send(
+          new errors.UnauthorizedError({
+            message: 'Authentication failed. User not found.'
+          })
+        )
+      }
 
-        if (!user.comparePasswords(req.body.password)) {
-          res.send(
-            new errors.UnauthorizedError({
-              message:
-                'Authentication failed. The password entered does not match our records.'
-            })
-          )
-        }
+      if (!user.comparePasswords(req.body.password)) {
+        return res.send(
+          new errors.UnauthorizedError({
+            message: 'Authentication failed. The password entered does not match our records.'
+          })
+        )
+      }
 
-        res.json({
-          user: {
-            _id: user._id,
-            name: user.name
-          },
-          auth: {
-            accessToken: jwt.sign({ name: user.name, email: user.email, _id: user._id }, 'some secret'),
-            expires: 1
-          }
-        })
+      res.json({
+        user: {
+          _id: user._id,
+          name: user.name
+        },
+        auth: {
+          accessToken: jwt.sign({ name: user.name, email: user.email, _id: user._id }, 'some secret'),
+          expires: 1
+        }
       })
+    })
       .catch(next)
   },
 
@@ -79,6 +76,7 @@ export default {
 
     if (cookie && cookie.accessToken) {
       const verified = verifyToken(cookie.accessToken)
+
       if (verified) {
         res.send(verified)
         return
@@ -90,13 +88,13 @@ export default {
 
   loginRequired: (req, res, next) => {
     if (req.user) {
-      next()
-    } else {
-      return res.send(
-        new errors.UnauthorizedError({
-          message: 'Unauthorised user.'
-        })
-      )
+      return next()
     }
+
+    res.send(
+      new errors.UnauthorizedError({
+        message: 'Unauthorised user.'
+      })
+    )
   }
 }
