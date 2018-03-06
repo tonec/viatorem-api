@@ -2,7 +2,7 @@ import errors from 'restify-errors'
 import Trip from '../models/tripModel'
 
 export default {
-  index: (req, res) => {
+  query: (req, res) => {
     Trip.find({ user: req.user._id })
       .then(trips => {
         res.json(trips)
@@ -16,7 +16,7 @@ export default {
       })
   },
 
-  show: (req, res, next) => {
+  detail: (req, res, next) => {
     Trip.findById(req.params.id)
       .then(trip => {
         if (trip.user.toString() !== req.user._id) {
@@ -32,7 +32,7 @@ export default {
       .catch(next)
   },
 
-  create: (req, res) => {
+  insert: (req, res) => {
     Trip.create({
       title: req.body.title,
       description: req.body.description,
@@ -50,5 +50,13 @@ export default {
           })
         )
       })
+  },
+
+  update: (req, res) => {
+    // TODO: implement this
+  },
+
+  delete: (req, res) => {
+    // TODO: implement this
   }
 }

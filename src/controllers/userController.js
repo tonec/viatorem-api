@@ -1,7 +1,7 @@
 import User from '../models/userModel'
 
 export default {
-  index: (req, res, next) => {
+  query: (req, res, next) => {
     User.find({})
       .then(users => {
         res.json(users)
@@ -9,7 +9,7 @@ export default {
       .catch(next)
   },
 
-  show: (req, res, next) => {
+  detail: (req, res, next) => {
     const _id = req.params.id
 
     User.findById({ _id })
@@ -17,5 +17,17 @@ export default {
         res.json(user)
       })
       .catch(next)
+  },
+
+  insert: () => {
+
+  },
+
+  update: () => {
+
+  },
+
+  delete: () => {
+
   }
 }
