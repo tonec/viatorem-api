@@ -27,6 +27,8 @@
     "bcrypt-nodejs": "^0.0.3",
     "is-master": "^1.2.2",
     "jsonwebtoken": "^8.1.1",
+    "lodash": "^4.17.5",
+    "lodash.omit": "^4.5.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.0.6",
     "restify": "^6.3.4",

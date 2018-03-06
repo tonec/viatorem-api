@@ -1,11 +1,12 @@
 import errors from 'restify-errors'
+import formatData from '../utils/formatData'
 import Trip from '../models/tripModel'
 
 export default {
   query: (req, res) => {
     Trip.find({ user: req.user._id })
       .then(trips => {
-        res.json(trips)
+        res.json(formatData('trips', trips, req))
       })
       .catch(err => {
         res.send(
