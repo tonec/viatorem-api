@@ -6,7 +6,7 @@ export default {
   query: (req, res) => {
     Trip.find({ user: req.user._id })
       .then(trips => {
-        res.json(format('trips', trips, req))
+        res.json(format('trips', trips, req, res))
       })
       .catch(err => {
         res.send(

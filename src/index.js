@@ -2,6 +2,7 @@ import restify from 'restify'
 import mongoose from 'mongoose'
 import im from 'is-master'
 import cookieParser from 'restify-cookies'
+import paginate from 'restify-paginate'
 import config from '../config'
 import routes from './routes'
 import tasks from './tasks'
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 app.use(restify.plugins.acceptParser(app.acceptable))
 app.use(restify.plugins.queryParser({ mapParams: true }))
 app.use(restify.plugins.bodyParser({ mapParams: false }))
+app.use(paginate(app))
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'X-Requested-With')

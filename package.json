@@ -32,7 +32,8 @@
     "mongo": "^0.1.0",
     "mongoose": "^5.0.6",
     "restify": "^6.3.4",
-    "restify-cookies": "^0.2.2"
+    "restify-cookies": "^0.2.2",
+    "restify-paginate": "^0.0.4"
   },
   "lint-staged": {
     "+(src|api)/**/*.js": [
