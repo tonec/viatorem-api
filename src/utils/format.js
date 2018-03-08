@@ -1,15 +1,13 @@
 import omit from 'lodash.omit'
 
 export default (type, data, req, res) => {
-  let response = {status: 'ok', code: 200, result: {}}
+  let response = { status: 'ok', code: 200, meta: {} }
 
   const paginated = res.paginate.getPaginatedResponse(data)
   const parsed = JSON.parse(JSON.stringify(paginated))
 
-  console.log(parsed)
-
   if (parsed.data.length > 0) {
-    response.result[type] = parsed.data.reduce((acc, item) => {
+    response[type] = parsed.data.reduce((acc, item) => {
       let newItem = {
         id: item._id,
         ...omit(item, ['_id', '__v'])
@@ -17,9 +15,10 @@ export default (type, data, req, res) => {
 
       return acc.concat(newItem)
     }, [])
-    response.result.pages = parsed.pages
+    response.pages = parsed.pages
+    response.meta.total = data.length
   } else {
-    response.result = null
+    response = null
   }
 
   return response
