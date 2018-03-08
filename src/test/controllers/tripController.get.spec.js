@@ -90,7 +90,7 @@ describe('ROUTE: GET /trips', () => {
         if (err) {
           return done(new Error(`Supertest has encountered an error: ${err}`))
         }
-        expect(res.body.result['trips'].length).to.equal(2)
+        expect(res.body['trips'].length).to.equal(2)
         done()
       })
   })
