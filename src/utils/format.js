@@ -2,8 +2,6 @@ import omit from 'lodash/omit'
 import _get from 'lodash/get'
 import qs from 'qs'
 
-console.log(_get)
-
 export default (type, data, req, res) => {
   let response = { status: 'ok', code: 200 }
   const query = qs.parse(req.getQuery())
