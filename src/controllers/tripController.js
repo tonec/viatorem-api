@@ -28,7 +28,14 @@ export default {
             })
           )
         }
-        res.json(trip)
+        res.json({
+          id: trip._id,
+          title: trip.title,
+          description: trip.description,
+          startDate: trip.startDate,
+          endDate: trip.endDate,
+          user: trip.user._id
+        })
       })
       .catch(next)
   },
